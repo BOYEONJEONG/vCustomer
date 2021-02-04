@@ -30,38 +30,7 @@ export default {
   data () {
     return {
       filterInput:"",
-      customers: [
-        {
-          id:1,
-          first_name:"boyeon",
-          last_name:"jeong",
-          email:"boyeon.jeong@bes.com",
-          phone:"010-1234-1234",
-          city:"Seoul",
-          address:"Gwanak-gu",
-          state:"Seoul"
-        },
-        {
-          id:2,
-          first_name:"surim",
-          last_name:"lee",
-          email:"surim.lee@bes.com",
-          phone:"010-1234-1234",
-          city:"Seoul",
-          address:"Gwanak-gu",
-          state:"Seoul"
-        },
-        {
-          id:3,
-          first_name:"bomi",
-          last_name:"jeong",
-          email:"bomi.jeong@bes.com",
-          phone:"010-1234-1234",
-          city:"Seoul",
-          address:"Gwanak-gu",
-          state:"Seoul"
-        },
-      ]
+      customers: []
     }
   },
   methods: {
@@ -69,7 +38,7 @@ export default {
       this.$http.get('http://slimapp/api.customers').then(function(response){console.log(response.body)});
     },
     detailCustomer(index){
-      this.$router.push({name: 'CustomerDetails', params:{customer:this.customers[index]}});
+      this.$router.push({name: 'CustomerDetails', params:{index:index}});
     },
     filterBy(list,value){
       return list.filter(function(customer){
@@ -78,12 +47,13 @@ export default {
     }
   },
   created: function(){
-    // this.fetchCustomers();
     if(this.$route.params.customer){
       this.customers.push(this.$route.params.customer);
-    }else{
-      console.log("null");
     }
+    const baseURI = 'http://localhost:8080';
+    axios.get(baseURI).then((result) => {
+      this.customers=result.data;
+    });
   }
 }
 </script>

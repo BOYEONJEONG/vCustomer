@@ -26,7 +26,11 @@ export default {
   methods: {
   },
   created: function(){
-    this.customer=this.$route.params.customer;
+    const baseURI = 'http://localhost:8080';
+    let params = {index : this.$route.params.index};
+    axios.get(baseURI+'/detail',params).then((result) => {
+      // this.customers=result.data;
+    });
   }
 }
 </script>

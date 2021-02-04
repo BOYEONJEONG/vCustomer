@@ -63,6 +63,7 @@ export default {
       if(!this.customer.first_name || !this.customer.last_name || !this.customer.email){
         console.log('Please fill in all required fields');
       }else{
+        
         let newCustomer = {
           id: 4,
           first_name: this.customer.first_name,
@@ -74,13 +75,10 @@ export default {
           state: this.customer.state
         }
         
-        console.log(newCustomer);
-        this.$router.push({name:'Customers', params:{customer: newCustomer}});
-        
-        // this.$http.post('http://slimapp/api/customer/add', newCustomer)
-        //   .then(function(response){
-        //     this.$router.push({path:'/'});
-        //   });
+        const baseURI = 'http://localhost:8080';
+        axios.post(baseURI+'/add',newCustomer).then((result) => {
+          this.$router.push({path:'/'});
+        });
       }
 
     }
