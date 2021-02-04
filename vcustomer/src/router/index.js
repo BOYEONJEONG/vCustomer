@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import Customers from '@/components/Customers.vue'
 import About from '@/components/About.vue'
 import Nav from '@/components/Nav.vue'
-import Add from '@/components/Add.vue'
+import CustomerAdd from '@/components/CustomerAdd.vue'
 import CustomerDetails from '@/components/CustomerDetails.vue'
+import CustomerUpdate from '@/components/CustomerUpdate.vue'
 
 Vue.use(Router)
 
@@ -12,12 +13,6 @@ export default new Router({
   // history : /#/을 제거
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'Customers',
-      component: Customers,
-      props:true
-    },
     {
       path: '/about',
       name: 'About',
@@ -29,14 +24,25 @@ export default new Router({
       component: Nav
     },
     {
-      path: '/add',
-      name: 'Add',
-      component: Add
+      path: '/',
+      name: 'Customers',
+      component: Customers,
+      props:true
+    },
+    {
+      path: '/customer/add',
+      name: 'CustomerAdd',
+      component: CustomerAdd
     },
     {
       path: '/customer/:id',
       name: 'CustomerDetails',
       component: CustomerDetails
+    },
+    {
+      path: '/customer/update',
+      name: 'CustomerUpdate',
+      component: CustomerUpdate
     }
   ]
 })

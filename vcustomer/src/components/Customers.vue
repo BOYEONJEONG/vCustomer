@@ -6,6 +6,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>no</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
@@ -14,6 +15,7 @@
       </thead>
       <tbody>
         <tr v-for="customer in filterBy(customers, filterInput)" :key="customer.id">
+          <td>{{customer.id}}</td>
           <td>{{customer.first_name}}</td>
           <td>{{customer.last_name}}</td>
           <td>{{customer.email}}</td>

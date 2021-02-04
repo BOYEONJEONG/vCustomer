@@ -16,7 +16,7 @@
             <li><router-link class="nav-link" to="/about">About</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link class="nav-link" to="/add">Add Customer</router-link></li>
+            <li><router-link class="nav-link" to="/customer/add">Add Customer</router-link></li>
           </ul>
           
         </div><!--/.nav-collapse -->
