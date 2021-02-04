@@ -13,11 +13,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(customer, index) in filterBy(customers, filterInput)" :key="customer.id">
+        <tr v-for="customer in filterBy(customers, filterInput)" :key="customer.id">
           <td>{{customer.first_name}}</td>
           <td>{{customer.last_name}}</td>
           <td>{{customer.email}}</td>
-          <td><button class="btn btn-default" @click="detailCustomer(index)">View</button></td>
+          <td><button class="btn btn-default" @click="detailCustomer(customer.id)">View</button></td>
         </tr>
       </tbody>
     </table>
@@ -34,11 +34,8 @@ export default {
     }
   },
   methods: {
-    fetchCustomers(){
-      this.$http.get('http://slimapp/api.customers').then(function(response){console.log(response.body)});
-    },
-    detailCustomer(index){
-      this.$router.push({name: 'CustomerDetails', params:{index:index}});
+    detailCustomer(id){
+      this.$router.push({name: 'CustomerDetails', params:{id:id}});
     },
     filterBy(list,value){
       return list.filter(function(customer){
