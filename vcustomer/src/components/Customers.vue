@@ -1,6 +1,13 @@
 <template>
   <div class="customers container">
-    <h1 class="page-header">Manage Customers</h1>
+    <h1 class="page-header">
+      Manage Customers
+      <span class="pull-right">
+        <button @click="movePage" class="btn btn-default">Go</button>
+        <button @click="clickReset" class="btn btn-default">Reset</button>
+        <button @click="clickStore" class="btn btn-default">{{this.$store.state.click}}</button>
+      </span>
+    </h1>
     <input type="text" class="form-control" placeholder="Enter Last Name" v-model="filterInput">
     <br/>
     <table class="table table-striped">
@@ -27,6 +34,8 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
+
 export default {
   name: 'Customers',
   data () {
@@ -34,6 +43,8 @@ export default {
       filterInput:"",
       customers: []
     }
+  },
+  computed: {
   },
   methods: {
     detailCustomer(id){
@@ -43,6 +54,15 @@ export default {
       return list.filter(function(customer){
         return customer.last_name.indexOf(value) > -1;
       });
+    },
+    clickStore(){
+      this.$store.commit('count');
+    },
+    clickReset(){
+      this.$store.commit('resetCount');
+    },
+    movePage(){
+      this.$router.push({name: 'StoreTest'});
     }
   },
   created: function(){

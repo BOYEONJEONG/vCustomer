@@ -6,6 +6,7 @@ import Nav from '@/components/Nav.vue'
 import CustomerAdd from '@/components/CustomerAdd.vue'
 import CustomerDetails from '@/components/CustomerDetails.vue'
 import CustomerUpdate from '@/components/CustomerUpdate.vue'
+import StoreTest from '@/components/StoreTest.vue'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
       path: '/customer/update',
       name: 'CustomerUpdate',
       component: CustomerUpdate
+    },
+    {
+      path: '/store/test',
+      name: 'StoreTest',
+      component: StoreTest
     }
   ]
 })
