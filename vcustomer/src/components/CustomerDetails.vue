@@ -35,7 +35,7 @@ export default {
     },
     deleteCustomer(){
       var params={};
-      params.id=this.customer.id;
+      params.ids=[this.customer.id];
 
       const baseURI = 'http://localhost:8080';
       axios.put(baseURI+'/delete',params).then(() => {
