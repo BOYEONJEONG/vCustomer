@@ -3,6 +3,7 @@
     <h1 class="page-header">
       Manage Customers
       <span class="pull-right">
+        <button @click="downloadExcel" class="btn btn-default">Download</button>
         <button @click="movePage" class="btn btn-default">Go</button>
         <button @click="clickReset" class="btn btn-default">Reset</button>
         <button @click="clickStore" class="btn btn-default">{{this.$store.state.click}}</button>
@@ -37,7 +38,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import XLSX from 'xlsx'
 
 export default {
   name: 'Customers',
@@ -85,6 +86,19 @@ export default {
       axios.put(baseURI+'/delete',params).then(() => {
         this.$router.go(this.$router.currentRoute);
       });
+    },
+    downloadExcel(){
+      // 엑셀 워크시트로 json 내보내기
+      // 배열만 가능
+      var dataWS = XLSX.utils.json_to_sheet(this.customers);
+      // 엑셀의 workbook을 만든다
+      // workbook은 엑셀파일에 지정된 이름이다.
+      var wb = XLSX.utils.book_new();
+      // workbook에 워크시트 추가
+      // 시트명은 'nameData'
+      XLSX.utils.book_append_sheet(wb, dataWS, 'nameData');
+      // 엑셀 파일을 내보낸다.
+      XLSX.writeFile(wb, 'example.xlsx');
     },
     clickStore(){
       this.$store.commit('count');
